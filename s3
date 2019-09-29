@@ -1,0 +1,50 @@
+fizzbuzz = function(v,...) {
+  UseMethod("fizzbuzz")
+}
+fizzbuzz.default = function(v){
+  stop("Class ",class(v)," is not supported by fizzbuzz.\n", call. = FALSE)
+}
+fizzbuzz.integer = function(v)
+{
+  for (i in length(v)) 
+  {  
+    if (v[i] < 0)
+      {
+      stop(v[i]," is a negtive number.\n", call. = FALSE)
+      }
+    else{ 
+          if (v[i]%%3 == 0 & v[i]%%5 !=0)  #fizz
+            {
+             print("Fizz")
+            }
+          else if (v[i]%%3 != 0 & v[i]%%5 == 0)  #buzz
+          {
+             print("Buzz")
+          }
+          else if (v[i]%%3 == 0 & v[i]%%5 == 0)  #fizzbuzz
+          {
+            print("FizzBuzz")  
+          }
+          else{
+            print(v[i])
+          }
+    }
+  }
+}
+fizzbuzz.numeric = function(v)
+{
+  for (i in length(v)) {
+    if(v[i] == as.integer(v[i])){
+      v[i] == fizzbuzz.integer(v[i])
+    }
+    else if(v[i] == "Inf"){
+      stop(v[i]," is an Inf.\n",call. = FALSE)
+    }
+    else if (v[i] == "NaN"){
+      stop(v[i]," is an NaN.\n",call. = FALSE)
+    }
+    else {
+      stop(v[i]," is a double.\n",call. = FALSE)
+    }
+  }
+}
